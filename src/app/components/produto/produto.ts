@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component,Input,Output } from '@angular/core';
+import { UpperCasePipe,CurrencyPipe } from '@angular/common';
+import { PrecoFormatadoPipe } from '../../pipes/preco-formatado-pipe';
 
 @Component({
   selector: 'app-produto',
-  imports: [],
+  imports: [CurrencyPipe, UpperCasePipe, PrecoFormatadoPipe],
   templateUrl: './produto.html',
   styleUrl: './produto.css',
 })
-export class Produto {
-  produto = 'Notebook';
-  preco = 5000;
-}
+ export class Produto {
+  @Input() nome: string = '';
+  @Input() preco: number = 0;
+  
+
+ 
+   }
+ 
