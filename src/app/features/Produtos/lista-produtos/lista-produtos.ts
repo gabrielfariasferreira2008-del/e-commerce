@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Produto } from '../produto/produto';
 @Component({
   selector: 'app-lista-produtos',
@@ -7,14 +7,19 @@ import { Produto } from '../produto/produto';
   styleUrl: './lista-produtos.css',
 })
 export class ListaProdutos {
-produtos = [
+produtos = signal([
     { nome: 'Teclado Gamer', preco: 100.99 },
     { nome: 'Mouse Gamer', preco: 25.99 },
     { nome: 'Monitor Gamer', preco: 300.99 },
     { nome: 'Desktop Gamer', preco: 1500.49 },
     { nome: 'Headset Gamer', preco: 100.75 }
-];
+  ]);
 exibirProduto(nome: string) {
   console.log('Produto selecionado:', nome);
+  }
+  adicionarProduto() {
+    this.produtos.update((ListaAtual) => [
+      ...ListaAtual, {nome: 'Sony PlayStation 5', preco: 100.99}
+    ]);
   }
 }
