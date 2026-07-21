@@ -3,19 +3,24 @@ import { Produto } from '../produto/produto';
 import{computed } from '@angular/core';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { effect } from '@angular/core';
+import{  UpperCasePipe} from '@angular/common';
 @Component({
   selector: 'app-lista-produtos',
-  imports: [Produto, PrecoFormatadoPipe],
+  imports: [Produto, PrecoFormatadoPipe, UpperCasePipe],
   templateUrl: './lista-produtos.html',
   styleUrl: './lista-produtos.css',
 })
 export class ListaProdutos {
 produtos = signal([
-    { nome: 'Teclado Gamer', preco: 100.99 },
-    { nome: 'Mouse Gamer', preco: 25.99 },
-    { nome: 'Monitor Gamer', preco: 300.99 },
-    { nome: 'Desktop Gamer', preco: 1500.49 },
-    { nome: 'Headset Gamer', preco: 100.75 }
+    { nome: 'Teclado Gamer', preco: 149.00 },
+
+    { nome: 'Mouse Gamer', preco: 200.00 },
+
+    { nome: 'Monitor Gamer', preco: 1599.99 },
+
+    { nome: 'Desktop Gamer', preco: 4999.99 },
+
+    { nome: 'Headset Gamer', preco: 699.99 }
   ]);
 exibirProduto(nome: string) {
   ///console.log('Produto selecionado:', nome);
@@ -23,16 +28,20 @@ exibirProduto(nome: string) {
   }
   adicionarProduto() {
     this.produtos.update((ListaAtual) => [
-      ...ListaAtual, {nome: 'Sony PlayStation 5', preco: 100.99}
+      ...ListaAtual, {nome: 'Processador Core i5 14550f3', preco: 2500}
     ]);
   }
   totalProdutos = computed(() => this.produtos().length);
   valorTotal = computed(() => {
     return this.produtos().reduce((total, item) => total + item.preco, 0);
   });
-  subtituirProdutos() {
+  substituirProdutos() {
     this.produtos.set([
-      { nome: 'Arroz Fazenda', preco: 400},
+      {nome:'Teclado',preco: 40},
+      {nome:'Mouse',preco: 10},
+      {nome:'Monitor',preco: 100},
+      {nome:'Desktop', preco: 500},
+      {nome:'Headset', preco: 25}
     ]);
   }
   constructor() {
@@ -50,5 +59,17 @@ if (typeof document !== 'undefined') {
     });
 }
 produtoSelecionado = signal<string | null>(null);
-}
 
+carrinho = signal<{ nome: string; preco: number }[]>([]);
+
+adicionarAoCarrinho(produto: { nome: string; preco: number }) {
+  this.carrinho.update((listaAtual) => [
+    ...listaAtual, produto]);}
+quantidadeCarrinho = computed(() =>
+  this.carrinho().length);
+totalCarrinho = computed(() =>{ 
+  return this.carrinho().reduce((total,item) =>
+    total+item.preco,0
+);});
+
+  }
