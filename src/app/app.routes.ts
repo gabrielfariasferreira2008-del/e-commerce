@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import  {authGuarad} from '@angular/core'
 
 export const routes: Routes = [
 {
@@ -13,7 +14,7 @@ export const routes: Routes = [
 },
 {
     path: 'carrinho',
-    loadComponent: () =>
+    loadComponent: (authGuard) =>
    import ('./features/carrinho/carrinho/carrinho').then((m) => m.Carrinho),
 },
 {
