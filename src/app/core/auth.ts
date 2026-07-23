@@ -1,11 +1,12 @@
 import { signal } from '@angular/core';
-export const usuariologado = signal (false);
+
+export const usuarioLogado = signal (false);
 
 export function login() {
-    usuariologado.set(true);   
+    usuarioLogado.set(true);   
 }
 export function logout(){
-usuariologado.set(false);
+usuarioLogado.set(false);
 }
  
     
