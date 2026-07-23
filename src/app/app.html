@@ -10,6 +10,7 @@
 
 <hr />
 <button (click)="login()">Login</button>
-<button (click)="logout()"></button>
-<p>Status{{usuariologado()'Logado':'Delogado}}'</p>
+<button (click)="logout()">Logout</button>
+<p>Status: {{usuariologado() ? 'Logado':'Delogado'}}</p>
+<hr>
 <router-outlet></router-outlet>
