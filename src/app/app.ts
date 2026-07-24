@@ -1,6 +1,5 @@
-import { Component, importProvidersFrom, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
-import { ListaProdutos } from './features/Produtos/lista-produtos/lista-produtos';// 
 import { login, usuarioLogado, logout } from './core/auth';
 
 

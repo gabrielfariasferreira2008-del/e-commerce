@@ -27,7 +27,8 @@
 <p><button (click)="substituirProdutos()"> substituir Produtos</button></p> -->
 
 
-<h2>Produtos:</h2>
+
+ <h2>Produtos:</h2>
 @if (carregando()) {
 <p>Carregando produtos...</p>
 }
@@ -41,6 +42,7 @@
 <button (click)="adicionarAoCarrinho(item)">Adicionar ao Carrinho</button>
 }
 }
+
 <h2>carrrinho<h2>
     @for (item of carrinho(); track $index){
         <p>{{item.nome|uppercase}} {{item.preco|precoFormatado}}</p>
