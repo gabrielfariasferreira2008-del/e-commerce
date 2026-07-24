@@ -1,8 +1,9 @@
-import { Component, signal, computed, effect, Inject } from '@angular/core';
+import { Component, signal, computed, effect, inject } from '@angular/core';
 import { Produto } from '../produto/produto';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { UpperCasePipe } from '@angular/common';
-import { produtosService } from '../produtos.service';
+import { ProdutosService } from '../produtos.service';
+
 @Component({
 selector: 'app-lista-produtos',
 imports: [Produto, PrecoFormatadoPipe, UpperCasePipe],
@@ -22,6 +23,10 @@ carrinho = signal<{ nome: string; preco: number }[]>([]);
 
 // controle de carregamento
 carregando = signal(true);
+
+private produtosService = inject(ProdutosService);
+error = signal
+
 
 // ===== COMPUTED =====
 totalProdutos = computed(() => this.produtos().length);
@@ -53,17 +58,21 @@ document.title = `(${this.totalProdutos()}) Minha Loja`;
 }
 // ===== MÉTODO HTTP (API) =====
 
-carregarProdutos(){
+carregarProdutos() { //Ativa. laading
+this.carregando.set(true);  //Limpar erro
 
-  this.carregando.set(true);
-  this.produtosService.buscarProdutos().subscribe({
-    next:(dados) => {
-        this.produtos.set(produtos);
-        this.carregando.set(false);
-    },
-  })
-} 
-
+this.produtosService.buscarProdutos().subscribe({
+next: (dados) => {
+const produtos = this.produtosService.transformarProdutos(dados);
+this.produtos.set(produtos);
+this.carregando.set(false);
+},
+error: (erro) => {
+console.error('Erro ao carregar produtos:', erro);
+this.carregando.set(false);
+},
+});
+}
 // ===== MÉTODOS EXISTENTES (INALTERADOS) =====
 exibirProduto(nome: string) {
 this.produtoSelecionado.set(nome);
@@ -88,5 +97,4 @@ this.carrinho.update(listaAtual => [
 produto
 ]);
 }
-private produtosService = Inject (produtosService);
 }
