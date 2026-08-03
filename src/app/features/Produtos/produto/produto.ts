@@ -1,8 +1,10 @@
-import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { Component,Input,Output,EventEmitter, output } from '@angular/core';
 import { UpperCasePipe, } from '@angular/common';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
+import { TmplAstDirective } from '@angular/compiler';
 
 @Component({  
+
   selector: 'app-produto',
   imports: [ UpperCasePipe, PrecoFormatadoPipe],
   templateUrl: './produto.html',
@@ -13,9 +15,20 @@ import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
   @Input() nome: string = '';
   @Input() preco: number = 0;
 
+ // @Output() produtoSelecionado = new EventEmitter<string>();
   @Output() produtoSelecionado = new EventEmitter<string>();
+
   selecionarProduto() {
     this.produtoSelecionado.emit(this.nome);
   }
+
+@Output() produtoAdicionado = new EventEmitter<{
+  nome: string;
+  preco: number;
+}>();
+
+adicionarAoCarrinho() {
+  this.produtoAdicionado.emit({ nome: this.nome, preco: this.preco });
+}
 
  } 
