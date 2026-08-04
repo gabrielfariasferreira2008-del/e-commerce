@@ -1,16 +1,12 @@
-<!-- Cobeçalho:nome da loja criada com variável {{nomeLoja}}--> 
-<!-- Para alterar o neme da loja localizar na class App variálvel nomeLoja -->
-<h1>{{nomeLoja}}</h1>
-<!--barra de navegação, adicionar as notas -->
-<nav>
-<a routerLink="/">home</a> |
-<a routerLink="/produtos">produtos</a> |
-<a routerLink="/carrinho">carrinho</a>    
-</nav>
-
-<hr />
+<app-header></app-header>
+<main style="margin-top: 20px;">
+    <section>
+     
 <button (click)="login()">Login</button>
 <button (click)="logout()">Logout</button>
 <p>Status: {{usuariologado() ? 'Logado':'Delogado'}}</p>
+
+</section>
+
 <hr>
 <router-outlet></router-outlet>
