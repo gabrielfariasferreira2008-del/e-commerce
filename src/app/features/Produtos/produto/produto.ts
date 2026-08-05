@@ -4,10 +4,12 @@ import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { TmplAstDirective } from '@angular/compiler';
 import { MatButtonModule } from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterLink } from '@angular/router';
 @Component({  
 
   selector: 'app-produto',
-  imports: [ UpperCasePipe, PrecoFormatadoPipe, MatButtonModule, MatCardModule],
+  imports: [ UpperCasePipe, PrecoFormatadoPipe, MatButtonModule, MatCardModule, MatIconModule, RouterLink],
   templateUrl: './produto.html',
   styleUrl: './produto.css',
 })

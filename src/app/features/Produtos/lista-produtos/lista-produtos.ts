@@ -3,11 +3,9 @@ import { Produto } from '../produto/produto';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { UpperCasePipe } from '@angular/common';
 import { ProdutosService } from '../produtos.service';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
 @Component({
 selector: 'app-lista-produtos',
-imports: [Produto, PrecoFormatadoPipe, UpperCasePipe, MatButtonModule, MatCardModule],
+imports: [Produto, PrecoFormatadoPipe, UpperCasePipe, ],
 templateUrl: './lista-produtos.html',
 styleUrl: './lista-produtos.css',
 })
