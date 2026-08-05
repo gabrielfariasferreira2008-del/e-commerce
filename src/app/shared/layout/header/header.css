@@ -1,8 +1,12 @@
 mat-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+  z-index: sticky;
+  display: flex;
+  flex-direction: row;
 }
-.spacer {
+.flex-spacer {
   flex: 1 1 auto;
+}
+
+button {
+  margin-left: 8px;
 }
