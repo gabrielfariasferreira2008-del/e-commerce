@@ -3,7 +3,7 @@ mat-toolbar {
   display: flex;
   flex-direction: row;
 }
-.flex-spacer {
+.spacer {
   flex: 1 1 auto;
 }
 
