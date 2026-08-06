@@ -48,8 +48,8 @@
 }
 
 <h2>carrrinho<h2>
-    @for (item of carrinho(); track $index){
+    @for (item of carrinhoService.item(); track $index){
         <p>{{item.nome|uppercase}} {{item.preco|precoFormatado}}</p>
     }
-    <p><strong>Item no carrinho: </strong>{{quantidadeCarrinho()}}</p>
-    <p><strong>Total no carriho: </strong>{{totalCarrinho()}}
+    <p><strong>Item no carrinho: </strong>{{carrinhoService.quantidade()}}</p>
+    <p><strong>Total no carriho: </strong>{{carrinhoService.total()}}

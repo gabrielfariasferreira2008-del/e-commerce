@@ -2,7 +2,9 @@ import { Component, signal, computed, effect, inject } from '@angular/core';
 import { Produto } from '../produto/produto';
 import { PrecoFormatadoPipe } from '../../../shared/pipes/preco-formatado-pipe';
 import { UpperCasePipe } from '@angular/common';
-import { ProdutosService } from '../produtos.service';
+import { ProdutosService } from '../../../core/services/produtos.service';
+import { CarrinhoService } from '../../../core/services/carrinho.services';
+
 @Component({
 selector: 'app-lista-produtos',
 imports: [Produto, PrecoFormatadoPipe, UpperCasePipe, ],
@@ -17,8 +19,6 @@ produtos = signal<{ nome: string; preco: number }[]>([]);
 
 produtoSelecionado = signal<string | null>(null);
 
-// Carrinho continua igual
-carrinho = signal<{ nome: string; preco: number }[]>([]);
 
 // controle de carregamento
 carregando = signal(true);
@@ -28,14 +28,9 @@ error = signal
 
 
 // ===== COMPUTED =====
-totalProdutos = computed(() => this.produtos().length);
+
 valorTotal = computed(() => {
 return this.produtos()
-.reduce((total, item) => total + item.preco, 0);
-});
-quantidadeCarrinho = computed(() => this.carrinho().length);
-totalCarrinho = computed(() => {
-return this.carrinho()
 .reduce((total, item) => total + item.preco, 0);
 });
 // ===== CONSTRUTOR =====
@@ -51,7 +46,7 @@ console.log('Valor total atualizado:', this.valorTotal());
 });
 effect(() => {
 if (typeof document !== 'undefined') {
-document.title = `(${this.totalProdutos()}) Minha Loja`;
+document.title = `($ Minha Loja`;
 }
 });
 }
@@ -91,9 +86,14 @@ this.produtos.set([
 }
 
 adicionarAoCarrinho(produto: { nome: string; preco: number }) {
-this.carrinho.update(listaAtual => [
-...listaAtual,
-produto
-]);
+this.carrinhoService.adicionarItem(produto);
 }
+//?============== IMJECT ================
+
+private produtoService = inject (ProdutosService);
+public carrinhoService = inject (CarrinhoService);
+quatidadeCarrinho = this.carrinhoService.quantidade;
+totalCarrinho = this.carrinhoService.total;
+
 }
+
