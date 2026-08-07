@@ -1,8 +1,28 @@
 <h2>Checkout</h2>
 <form [formGroup]="formulario"> 
    <p><input type="text" formControlName="nome" placeholder= "Nome" ></p>
+   @if(.get('nome')?  88  .get ('nome')?){
+    @if ( .get('')?  ?)[]{
+   <br>
+     <small style="color:red".> Nome é Obrigatorio </small>
+   @if (.get('nome'))
+     }
+   }
+      
+ @if (.get('nome')? ? []){
+   <br>
+   <small style="color:red"> Nome deve ter no minimo 3 letras</small>
+ }
+ @if ( .get('nome')? ?[]) {
+   <br>
+   <small style="color:red">Nome não pode conter Números!</small>  
+ }  
    <p><input type="email" formControlName="email" placeholder= "email"></p>
+   
+   
    <p><input type="text" formControlName= "endereco" placeholder="Endereço"></p>
-   <button type="button" (click)="finalizar()">finaliza compra</button>
+   
+   
+   <button type="button" (click)="finalizar()"[disobled]= "formulario.invalid">finaliza compra</button>
 
 </form>
