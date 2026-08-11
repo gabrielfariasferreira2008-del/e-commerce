@@ -41,37 +41,17 @@ return;
 const dados= this.formulario.value;
 const Item=this.carrinhoService. item();
 const total=this.carrinhoService. total();
+
  console.log('Compra finalizada com sucesso!');
  console.log('Dados do fotmulario:',dados);
- console.log('Item do carrinho:', item);
+ console.log('Item do carrinho:', Item);
  console.log('Total de compra:', total);
 
-this.carrinhoService.limpar();
+this.carrinhoService.limparCarrinho();
 this.formulario.reset();
 this.compraFinalizada.set(true);
 }
 }
-
-
-
-  {
-
-  }
-  console.log ('Não é possivel finalizar a comprar com carrinho')
- return;
-
-if (this.formulario Invalid); {
-  console.log('formulario')
-  return
-   }
-  const dados= this.formulario.vlue;
-  const item= this.carrinhoService.item();
-  const total= this.carrinhoSerevice.totalitem();{
-    
-  }
-
-}
-  
 
  function nomeSemNumeros(control: AbstractControl): ValidationErrors | null {
 

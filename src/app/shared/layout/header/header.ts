@@ -5,6 +5,7 @@ import{MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { inject } from '@angular/core';
 import { CarrinhoService } from '../../../core/services/carrinho.services';
+import { AuthService } from '../../../core/services/Auth.service';
 
 @Component({
   selector: 'app-header',
@@ -12,8 +13,10 @@ import { CarrinhoService } from '../../../core/services/carrinho.services';
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
-export class Header {
+export class header {
   nomeLoja = 'MagaLucia'; //nome do e-commerce
   private carrinhoService = inject(CarrinhoService);
   quantidade = this.carrinhoService.quantidade;
+  private authService = inject (AuthService)
+  
 }
