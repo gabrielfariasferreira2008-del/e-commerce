@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from './core/auth.guard';
-import path from 'path';
-import { M } from '@angular/cdk/keycodes';
+
 
 export const routes: Routes = [
 {
@@ -30,7 +29,7 @@ export const routes: Routes = [
 path: 'login',
 canActivate : [authGuard],
 loadComponent : () =>
-  import('./features/login/login/login').then((m) => m.login),
+  import('./features/login/login/login').then((m) => m.Login),
 },
 
 {
