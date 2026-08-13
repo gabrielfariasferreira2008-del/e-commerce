@@ -10,6 +10,7 @@ export const httpinterceptor: HttpInterceptorFn = (req, next) => {
     
      
     const authService =inject(AuthService);
+    const router = inject (Router);
     
     const toker = 'fake-jwt-tpker';
     console.log ('inteceptando requisição: ', req.url); 
@@ -32,10 +33,16 @@ export const httpinterceptor: HttpInterceptorFn = (req, next) => {
          catchError ((error) =>{
  console.error ('ERRO GLOBAL: ', error);
              
+            if (error.status === 401){
+                 console.warn ('NÃO Autorizado');
+               authService.logout();
+               router.navigateByUrl('/login');
+            }
             if (error.status === 403){
-                 console. warn ('NÃO Autorizado');
-               authService. logout();
-               Router.navigateByUrl('/login');
+                console.warn ('acesso negado')
+                 
+             
+                
             }
             if (error.status === 500){
                  console.warn ('Erro Interno do Servidor');

@@ -1,11 +1,13 @@
 import { Injectable  } from '@angular/core';
 import { computed } from '@angular/core'
 import {signal} from '@angular/core'
-import { logout } from '../auth';
+
+
+ type PerfilUsuario= 'admin' |'usuario';
 
 type Usuario = {
 email: string;
-perfil: 'usuario'|'admin'; 
+perfil:PerfilUsuario; 
 };
 
 @Injectable({
@@ -20,15 +22,14 @@ private tokenJwt = signal<string | null>(null);
 usuarioAtual = computed(() => this.usuario());
 estaLogado = computed(() => this.usuario() !== null);
 token = computed(() => this.tokenJwt());
-Admin = computed(() => this.usuario()?.perfil === 'admin');
+//Comp Signal derivado do estado do usuário
+admin = computed(() => this.usuario()?.perfil === 'admin');
 
 login(email: string, senha: string): boolean {
 
  if (!email || !senha)  
 return false;
-
-const perfil:perfilUsuario= email === 'admin@email.com' ? 'admin' : 'usuario'
-const tokeSimulado=
+const perfil:PerfilUsuario = email === 'admin@email.com' ? 'admin' : 'usuario'
 
 const tokenSimulado =
 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.' +
